@@ -1,0 +1,20 @@
+version: 1
+name: "AppKit - Intelligent Document Extraction Review"
+description: "A Node.js human-in-the-loop review app for ai_extract output, with
+  bounding-box evidence on the page image, a review form generated from the
+  extraction schema at runtime, and confidence-based triage, built with AppKit."
+
+resource_specs:
+  - name: "sql-warehouse"
+    description: "The SQL warehouse the app uses to read ai_extract output and log review decisions."
+    sql_warehouse_spec:
+      permission: "CAN_USE"
+  - name: "files"
+    description: "The Unity Catalog volume holding the page images written by ai_parse_document's imageOutputPath."
+    uc_securable_spec:
+      securable_type: "VOLUME"
+      permission: "READ_VOLUME"
+
+user_api_scopes:
+  - "sql"
+  - "files.files"

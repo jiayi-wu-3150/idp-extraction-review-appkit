@@ -1,0 +1,14 @@
+command: ['npm', 'run', 'start']
+env:
+  # Bound by the installer from the resources in manifest.yaml.
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: DATABRICKS_VOLUME_FILES
+    valueFrom: files
+
+  # A Unity Catalog table cannot be an app resource, so it is supplied here.
+  # Editable from the app's Environment tab after install, with no code change.
+  - name: EXTRACT_TABLE
+    value: 'catalog.schema.your_ai_extract_output'
+  - name: REVIEW_LOG_TABLE
+    value: 'catalog.schema.review_events'
